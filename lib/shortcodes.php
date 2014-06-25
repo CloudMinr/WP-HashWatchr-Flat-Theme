@@ -344,12 +344,28 @@ add_shortcode( 'zee_team', function( $atts, $content = null ){
 
   ob_start();
 
+	$atts = shortcode_atts( array(
+      'id' => '0'
+  ), $atts);
 
-  $args = array(
-    'posts_per_page' => -1,
-   'post_type'      =>  'zee_team'
-   );
-
+  extract($atts);
+	
+	if ( (!isset($id)) || ($id == 0) ){
+	
+    $args = array(
+        'posts_per_page' => -1,
+        'post_type'      =>  'zee_team'
+    );
+	 
+	} elseif ( (is_numeric($id)) && ($id >= 1) ){
+	
+	  $args = array(
+		    'p' => $id,
+        'posts_per_page' => -1,
+        'post_type'      =>  'zee_team'
+    );
+	 
+	}
 
   $data = get_posts( $args );
   if(count($data)>0){ ?>

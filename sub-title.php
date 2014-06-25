@@ -7,9 +7,10 @@ global $post;
 
 if( is_single() ) {
 
-    $title = zee_option('zee_blog_title');
-
-    $sub_title = zee_option('zee_blog_subtitle');
+    //$title = zee_option('zee_blog_title');
+    $title = get_the_title();
+    //$sub_title = zee_option('zee_blog_subtitle');
+    $sub_title = '';
 
 } elseif ( is_category() ) {
 
